@@ -360,7 +360,7 @@ fun OutlinedDropdown(
                         }
                         .padding(8.dp)
                 ) {
-                    Text(text = option)
+                    Text(text = option,color= Color.Black)
                 }
             }
         }

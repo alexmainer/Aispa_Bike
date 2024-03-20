@@ -60,7 +60,7 @@ fun IndexScreen(controller: NavHostController) {
         Spacer(modifier = Modifier.height(19.dp))
 
         Image(
-            painter = painterResource(id = R.drawable.la),
+            painter = painterResource(id = R.drawable.l_a),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
