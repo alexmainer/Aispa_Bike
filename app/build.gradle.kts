@@ -65,6 +65,7 @@ dependencies {
 
     implementation ("io.github.vanpra.compose-material-dialogs:datetime:0.8.1-rc")
     implementation("androidx.navigation:navigation-runtime-ktx:2.7.7")
+    implementation("com.google.firebase:firebase-database:20.3.1")
 //    implementation("androidx.compose.material3:material3-android:1.2.0")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 
