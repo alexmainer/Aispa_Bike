@@ -12,6 +12,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.mit.avispabikehireapplication.model.Product
 import com.mit.avispabikehireapplication.navigation.ROUTE_LOGIN
+import java.util.Date
 
 class ProductViewModel(var controller: NavHostController, var context: Context) {
     var authRepository: AuthViewModel
@@ -78,4 +79,96 @@ class ProductViewModel(var controller: NavHostController, var context: Context) 
         })
         return products
     }
+
+//    fun checkAvailability(selectedBikeType: String, selectedDate: Date, callback: (Boolean) -> Unit) {
+//        val ref = FirebaseDatabase.getInstance().getReference().child("Products")
+//        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                var isAvailable = true
+//                for (snap in snapshot.children) {
+//                    val product = snap.getValue(Product::class.java)
+//                    if (product != null && product.selectedBiketype == selectedBikeType && product.date == selectedDate.toString()) {
+//                        isAvailable = false
+//                        break
+//                    }
+//                }
+//                callback(isAvailable)
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                callback(false)
+//                Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
+//            }
+//        })
+//    }
+
+
+//    fun checkAvailability(selectedBikeType: String, selectedDate: Date, callback: (Boolean) -> Unit) {
+//        val ref = FirebaseDatabase.getInstance().getReference().child("Products")
+//        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                var isAvailable = true
+//                val bikeLimits = mapOf(
+//                    "Mountain Bike" to 50, // Specify the limit for each bike type
+//                    "City Bike" to 30,
+//                    "Kid Bike" to 20
+//                )
+//
+//                var count = 0
+//                val limit = bikeLimits[selectedBikeType] ?: 0 // Get the limit for the selected bike type
+//                for (snap in snapshot.children) {
+//                    val product = snap.getValue(Product::class.java)
+//                    if (product != null && product.selectedBiketype == selectedBikeType && product.date == selectedDate.toString()) {
+//                        count++
+//                        if (count >= limit) {
+//                            isAvailable = false // Exceeds the bike limit
+//                            break
+//                        }
+//                    }
+//                }
+//                callback(isAvailable)
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                callback(false)
+//                Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
+//            }
+//        })
+//    }
+
+    fun checkAvailability(selectedBikeType: String, selectedDate: Date, callback: (Boolean) -> Unit) {
+        val ref = FirebaseDatabase.getInstance().getReference().child("Products")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var isAvailable = true
+                val bikeLimits = mapOf(
+                    "Mountain Bike" to 10, // Specify the limit for each bike type
+                    "City Bike" to 15,
+                    "Kid Bike" to 20
+                )
+
+                var count = 0
+                val limit = bikeLimits[selectedBikeType] ?: 0 // Get the limit for the selected bike type
+                for (snap in snapshot.children) {
+                    val product = snap.getValue(Product::class.java)
+                    if (product != null && product.selectedBiketype == selectedBikeType && product.date == selectedDate.toString()) {
+                        count++
+                    }
+                }
+                if (count >= limit) {
+                    isAvailable = false // Exceeds the bike limit
+                }
+                callback(isAvailable)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                callback(false)
+                Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+
+
+
 }

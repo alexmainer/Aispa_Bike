@@ -4,6 +4,7 @@ package com.mit.avispabikehireapplication.ui.theme.screen.booking
 
 import android.app.DatePickerDialog
 import android.os.Build
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -283,7 +284,19 @@ fun BookingScreen(controller: NavHostController) {
 
         CustomDatePicker(
             selectedDate = selectedDate,
-            onDateSelected = { date -> selectedDate = date }
+            onDateSelected = { date -> selectedDate = date
+                // Call checkAvailability function here
+                val productViewModel = ProductViewModel(controller, context)
+                productViewModel.checkAvailability(selectedBikeType, date) { isAvailable ->
+                    if (isAvailable) {
+                        // Bike is available for selected date
+                        Toast.makeText(context, "Bike is available for selected date", Toast.LENGTH_SHORT).show()
+                    } else {
+                        // Bike is not available for selected date
+                        Toast.makeText(context, "Bike is not available for selected date", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         )
 
 
@@ -292,18 +305,56 @@ fun BookingScreen(controller: NavHostController) {
 
         Button(
             onClick = {
-                //-----------WRITE THE SAVE LOGIC HERE---------------//
-                val productRepository = ProductViewModel(controller, context)
-                productRepository.saveProduct(
-                    name.trim(),
-                    idNumber.trim(),
-                    selectedBikeType.trim(),
-                    quantity.trim(),
-                    selectedDate?.formatToDisplayDate() ?: ""
-                )
-                controller.navigate(ROUTE_DETAILS)
+                // Create an instance of ProductViewModel
+                val productViewModel = ProductViewModel(controller, context)
 
-
+                // Call checkAvailability function on the instance
+                selectedDate?.let {
+                    productViewModel.checkAvailability(selectedBikeType, it) { isAvailable ->
+                        if (isAvailable) {
+                            // Bike is available for selected date
+                            // Proceed with saving the product using the same instance of ProductViewModel
+                            productViewModel.saveProduct(
+                                name.trim(),
+                                idNumber.trim(),
+                                selectedBikeType.trim(),
+                                quantity.trim(),
+                                selectedDate?.formatToDisplayDate() ?: ""
+                            )
+                            controller.navigate(ROUTE_DETAILS)
+                        } else {
+                            // Bike is not available for selected date
+                            // Display a message or UI indication that bikes are not available
+                            Toast.makeText(context, "Bikes are not available for the selected date and type", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+//
+//                // Create an instance of ProductViewModel
+//                val productViewModel = ProductViewModel(controller, context)
+//
+//                // Call checkAvailability function on the instance
+//                selectedDate?.let {
+//                    productViewModel.checkAvailability(selectedBikeType, it) { isAvailable ->
+//                        if (isAvailable) {
+//                            // Bike is available for selected date
+//                            // Proceed with saving the product
+//                            val productRepository = ProductViewModel(controller, context)
+//                            productRepository.saveProduct(
+//                                name.trim(),
+//                                idNumber.trim(),
+//                                selectedBikeType.trim(),
+//                                quantity.trim(),
+//                                selectedDate?.formatToDisplayDate() ?: ""
+//                            )
+//                            controller.navigate(ROUTE_DETAILS)
+//                        } else {
+//                            // Bike is not available for selected date
+//                            // Display a message or UI indication that bikes are not available
+//                            Toast.makeText(context, "Bikes are not available for the selected date and type", Toast.LENGTH_SHORT).show()
+//                        }
+//                    }
+//                }
             },
             modifier = Modifier
                 .padding(16.dp),
