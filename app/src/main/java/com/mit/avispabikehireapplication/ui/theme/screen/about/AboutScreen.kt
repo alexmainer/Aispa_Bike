@@ -18,6 +18,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,7 +38,9 @@ import androidx.navigation.compose.rememberNavController
 import com.mit.avispabikehireapplication.R
 import com.mit.avispabikehireapplication.navigation.ROUTE_ABOUT
 import com.mit.avispabikehireapplication.navigation.ROUTE_CONTACT_US
+import com.mit.avispabikehireapplication.navigation.ROUTE_DETAILS
 import com.mit.avispabikehireapplication.navigation.ROUTE_HOME
+import com.mit.avispabikehireapplication.ui.theme.screen.home.NavigationItem
 import com.mit.avispabikehireapplication.ui.theme.screen.index.IndexScreen
 
 @androidx.compose.runtime.Composable
@@ -53,58 +56,52 @@ fun AboutScreen(controller: NavHostController) {
     )
     {
        //Spacer(modifier = Modifier.height(19.dp))
-
         Surface(
-            //color = MaterialTheme.colorScheme.primary,
             color= Color.Transparent,
-//            elevation = 2.dp,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 8.dp)
         ) {
-            Row(
+            Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 10.dp),
-                horizontalArrangement = Arrangement.End,
-                verticalAlignment = Alignment.CenterVertically
+                    .padding(8.dp)
+                    .background(Color.White) // Background color of the card
+                    .clickable { /* Handle card click if needed */ }
             ) {
-                // Add text for each screen in the navigation bar
-                Text(
-                    text = "HOME",
-                    fontWeight = FontWeight.Bold,
-                    color = Color(0xFF090808),
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .clickable {
-                            controller.navigate(ROUTE_HOME)
-                        }
-                )
 
-                Text(
-                    text = "ABOUT US",
-                    fontWeight = FontWeight.Bold,
-                    color = Color(0xFF020202),
-//                    style = MaterialTheme.typography.h6,
+                Row(
                     modifier = Modifier
-                        .padding(4.dp)
-                        .clickable {
-                            controller.navigate(ROUTE_ABOUT)
-                        }
-                )
-                Text(
-                    text = "CONTACT US",
-                    fontWeight = FontWeight.Bold,
-                    color = Color(0xFF020202),
-//                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier
-                        .padding(4.dp)
-                        .clickable {
-                            controller.navigate(ROUTE_CONTACT_US)
-                        }
-                )
+                        .fillMaxWidth()
+                        .padding(horizontal = 3.dp),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
 
-                // Add more text for other screens as needed
+                    NavigationItem(
+                        text = "HOME",
+                        route = ROUTE_HOME,
+                        controller = controller
+                    )
+
+                    NavigationItem(
+                        text = "ABOUT US",
+                        route = ROUTE_ABOUT,
+                        controller = controller
+                    )
+
+                    NavigationItem(
+                        text = "CONTACT US",
+                        route = ROUTE_CONTACT_US,
+                        controller = controller
+                    )
+
+                    NavigationItem(
+                        text = "RECEIPTS",
+                        route = ROUTE_DETAILS,
+                        controller = controller
+                    )
+                }
             }
         }
 
@@ -193,6 +190,19 @@ fun AboutScreen(controller: NavHostController) {
 
     }
 
+}
+@Composable
+private fun NavigationItem(text: String, route: String, controller: NavHostController) {
+    Text(
+        text = text,
+        color = Color(0xFFFF9800),
+        fontWeight = FontWeight.Bold,
+        modifier = Modifier
+            .padding(8.dp)
+            .clickable {
+                controller.navigate(route)
+            }
+    )
 }
 @Preview
 @Composable

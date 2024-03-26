@@ -44,7 +44,9 @@ import com.mit.avispabikehireapplication.R
 import com.mit.avispabikehireapplication.navigation.ROUTE_ABOUT
 import com.mit.avispabikehireapplication.navigation.ROUTE_BOOKING
 import com.mit.avispabikehireapplication.navigation.ROUTE_CONTACT_US
+import com.mit.avispabikehireapplication.navigation.ROUTE_DETAILS
 import com.mit.avispabikehireapplication.navigation.ROUTE_HOME
+import com.mit.avispabikehireapplication.ui.theme.screen.home.NavigationItem
 
 @Composable
 fun MountainBikesScreen(controller: NavHostController) {
@@ -54,6 +56,55 @@ fun MountainBikesScreen(controller: NavHostController) {
             .verticalScroll(rememberScrollState()),
         )
     {
+
+        Surface(
+            color= Color.Transparent,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
+        ) {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+                    .background(Color.White) // Background color of the card
+                    .clickable { /* Handle card click if needed */ }
+            ) {
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 3.dp),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+
+                    NavigationItem(
+                        text = "HOME",
+                        route = ROUTE_HOME,
+                        controller = controller
+                    )
+
+                    NavigationItem(
+                        text = "ABOUT US",
+                        route = ROUTE_ABOUT,
+                        controller = controller
+                    )
+
+                    NavigationItem(
+                        text = "CONTACT US",
+                        route = ROUTE_CONTACT_US,
+                        controller = controller
+                    )
+
+                    NavigationItem(
+                        text = "RECEIPTS",
+                        route = ROUTE_DETAILS,
+                        controller = controller
+                    )
+                }
+            }
+        }
 
         Text(
             text = "MOUNTAIN BIKES",
@@ -120,12 +171,12 @@ fun MountainBikesScreen(controller: NavHostController) {
 
                 },
                 modifier = Modifier.padding(30.dp),
-                colors = ButtonDefaults.buttonColors(Color.Black),
+                colors = ButtonDefaults.buttonColors(Color(0xFFFF9800)),
             )
             {
                 Text(
                     text = " BOOK :)",
-                    color = Color.White
+                    color = Color(0xFFFFFFFF)
                 )
 
 

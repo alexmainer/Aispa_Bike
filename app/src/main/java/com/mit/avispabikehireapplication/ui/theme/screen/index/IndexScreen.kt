@@ -68,7 +68,7 @@ fun IndexScreen(controller: NavHostController) {
                 .clip(CircleShape)
                 .border(
                     width = 5.dp,
-                    color = Color.Black,
+                    color = Color(0xFFFF9800),
                     shape = CircleShape
                 )
         )
@@ -88,7 +88,7 @@ fun IndexScreen(controller: NavHostController) {
                       controller.navigate(ROUTE_REGISTER)
 
             },
-            colors = ButtonDefaults.buttonColors(Color.Black),
+            colors = ButtonDefaults.buttonColors(Color(0xFFFF9800)),
         )
         {
             Text(
@@ -103,9 +103,9 @@ fun IndexScreen(controller: NavHostController) {
         Text(
             text = "Ride with Avispa: Where Wheels Meet Wonders",
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF000000),
+            color = Color(0xFFFF9800),
             fontFamily = FontFamily.SansSerif,
-            fontSize = 15.sp
+            fontSize = 19.sp
         )
 
 

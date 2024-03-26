@@ -24,6 +24,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -47,7 +48,9 @@ import androidx.navigation.compose.rememberNavController
 import com.mit.avispabikehireapplication.R
 import com.mit.avispabikehireapplication.navigation.ROUTE_ABOUT
 import com.mit.avispabikehireapplication.navigation.ROUTE_CONTACT_US
+import com.mit.avispabikehireapplication.navigation.ROUTE_DETAILS
 import com.mit.avispabikehireapplication.navigation.ROUTE_HOME
+import com.mit.avispabikehireapplication.ui.theme.screen.home.NavigationItem
 
 
 @Composable
@@ -65,53 +68,51 @@ fun ContactScreen(controller: NavHostController) {
     )
     {
         Surface(
-            //color = MaterialTheme.colorScheme.primary,
-            color = Color.Transparent,
-//            elevation = 2.dp,
+            color= Color.Transparent,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 8.dp)
         ) {
-            Row(
+            Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 10.dp),
-                horizontalArrangement = Arrangement.End,
-                verticalAlignment = Alignment.CenterVertically
+                    .padding(8.dp)
+                    .background(Color.White) // Background color of the card
+                    .clickable { /* Handle card click if needed */ }
             ) {
-                // Add text for each screen in the navigation bar
-                Text(
-                    text = "HOME",
-                    color = Color(0xFF090808),
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .clickable {
-                            controller.navigate(ROUTE_HOME)
-                        }
-                )
 
-                Text(
-                    text = "ABOUT US",
-                    color = Color(0xFF020202),
-//                    style = MaterialTheme.typography.h6,
+                Row(
                     modifier = Modifier
-                        .padding(4.dp)
-                        .clickable {
-                            controller.navigate(ROUTE_ABOUT)
-                        }
-                )
-                Text(
-                    text = "CONTACT US",
-                    color = Color(0xFF020202),
-//                    style = MaterialTheme.typography.h6,
-                    modifier = Modifier
-                        .padding(4.dp)
-                        .clickable {
-                            controller.navigate(ROUTE_CONTACT_US)
-                        }
-                )
+                        .fillMaxWidth()
+                        .padding(horizontal = 3.dp),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
 
-                // Add more text for other screens as needed
+                    NavigationItem(
+                        text = "HOME",
+                        route = ROUTE_HOME,
+                        controller = controller
+                    )
+
+                    NavigationItem(
+                        text = "ABOUT US",
+                        route = ROUTE_ABOUT,
+                        controller = controller
+                    )
+
+                    NavigationItem(
+                        text = "CONTACT US",
+                        route = ROUTE_CONTACT_US,
+                        controller = controller
+                    )
+
+                    NavigationItem(
+                        text = "RECEIPTS",
+                        route = ROUTE_DETAILS,
+                        controller = controller
+                    )
+                }
             }
         }
 
@@ -275,6 +276,7 @@ fun ContactScreen(controller: NavHostController) {
 
     }
 }
+
 
 
 

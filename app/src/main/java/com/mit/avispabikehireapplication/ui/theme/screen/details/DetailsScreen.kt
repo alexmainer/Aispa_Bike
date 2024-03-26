@@ -167,13 +167,16 @@ package com.mit.avispabikehireapplication.ui.theme.screen.details
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -196,6 +199,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.mit.avispabikehireapplication.data.ProductViewModel
 import com.mit.avispabikehireapplication.model.Product
+import com.mit.avispabikehireapplication.navigation.ROUTE_ABOUT
+import com.mit.avispabikehireapplication.navigation.ROUTE_CONTACT_US
+import com.mit.avispabikehireapplication.navigation.ROUTE_DETAILS
+import com.mit.avispabikehireapplication.navigation.ROUTE_HOME
+
 
 @Composable
 fun DetailsScreen(controller: NavHostController) {
@@ -212,8 +220,58 @@ fun DetailsScreen(controller: NavHostController) {
             modifier = Modifier.fillMaxSize().background(Color.White),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
+            Surface(
+                color= Color.Transparent,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp)
+            ) {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                        .background(Color.White) // Background color of the card
+                        .clickable { /* Handle card click if needed */ }
+                ) {
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 3.dp),
+                        horizontalArrangement = Arrangement.SpaceEvenly,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+
+                        NavigationItem(
+                            text = "HOME",
+                            route = ROUTE_HOME,
+                            controller = controller
+                        )
+
+                        NavigationItem(
+                            text = "ABOUT US",
+                            route = ROUTE_ABOUT,
+                            controller = controller
+                        )
+
+                        NavigationItem(
+                            text = "CONTACT US",
+                            route = ROUTE_CONTACT_US,
+                            controller = controller
+                        )
+
+                        NavigationItem(
+                            text = "RECEIPTS",
+                            route = ROUTE_DETAILS,
+                            controller = controller
+                        )
+                    }
+                }
+            }
+
             Text(
-                text = "BOOKING SUCCESSFUL !!",
+                text = "RECEIPT!!",
                 modifier = Modifier.fillMaxWidth().padding(8.dp),
                 color = Color(0xFFFF9800),
                 textAlign = TextAlign.Center,
@@ -237,6 +295,20 @@ fun DetailsScreen(controller: NavHostController) {
     }
 }
 
+@Composable
+private fun NavigationItem(text: String, route: String, controller: NavHostController) {
+    Text(
+        text = text,
+        color = Color(0xFFFF9800),
+        fontWeight = FontWeight.Bold,
+        modifier = Modifier
+            .padding(8.dp)
+            .clickable {
+                controller.navigate(route)
+            }
+    )
+}
+
 @SuppressLint("SimpleDateFormat")
 @Composable
 fun ProductItem(
@@ -245,6 +317,14 @@ fun ProductItem(
     productRepository: ProductViewModel
 ) {
     var isDetailsVisible by remember { mutableStateOf(false) }
+
+    // Calculate total price based on product details
+    val totalPrice = when (product.selectedBiketype) {
+        "Mountain Bike" -> 300 * product.quantity.toInt()
+        "City Bike" -> 200 * product.quantity.toInt()
+        "Kid Bike" -> 150 * product.quantity.toInt()
+        else -> 0 // Handle default case
+    }
 
     Column(modifier = Modifier.fillMaxWidth()) {
         Card(
@@ -267,7 +347,9 @@ fun ProductItem(
                 Text(text = "ID: ${product.idNumber}", modifier = Modifier.padding(8.dp))
                 Text(text = "Type: ${product.selectedBiketype}", modifier = Modifier.padding(8.dp))
                 Text(text = "Quantity: ${product.quantity}", modifier = Modifier.padding(8.dp))
+                Text(text = "Total Price: $totalPrice", modifier = Modifier.padding(8.dp))
                 Text(text = "Date: ${product.date}", modifier = Modifier.padding(8.dp))
+
             }
         }
     }

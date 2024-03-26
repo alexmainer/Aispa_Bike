@@ -49,6 +49,7 @@ import com.mit.avispabikehireapplication.R
 import com.mit.avispabikehireapplication.navigation.ROUTE_ABOUT
 import com.mit.avispabikehireapplication.navigation.ROUTE_CITY_BIKES
 import com.mit.avispabikehireapplication.navigation.ROUTE_CONTACT_US
+import com.mit.avispabikehireapplication.navigation.ROUTE_DETAILS
 import com.mit.avispabikehireapplication.navigation.ROUTE_HOME
 import com.mit.avispabikehireapplication.navigation.ROUTE_KID_BIKES
 import com.mit.avispabikehireapplication.navigation.ROUTE_LOGIN
@@ -84,7 +85,7 @@ fun HomeScreen(controller: NavHostController) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 10.dp),
+                        .padding(horizontal = 3.dp),
                     horizontalArrangement = Arrangement.SpaceEvenly,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -104,6 +105,12 @@ fun HomeScreen(controller: NavHostController) {
                     NavigationItem(
                         text = "CONTACT US",
                         route = ROUTE_CONTACT_US,
+                        controller = controller
+                    )
+
+                    NavigationItem(
+                        text = "RECEIPTS",
+                        route = ROUTE_DETAILS,
                         controller = controller
                     )
                 }
@@ -162,12 +169,12 @@ fun HomeScreen(controller: NavHostController) {
                     //controller.navigate(ROUTE_MOUNTAIN_BIKES)
                 },
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(Color.Transparent)
+                colors = ButtonDefaults.buttonColors(Color(0xFFFF9800))
             )
             {
                 Text(
                     text = "View Bikes",
-                    color = Color(0xFFFF9800),
+                    color = Color(0xFFFFFFFF),
                     fontWeight = FontWeight.Bold
 
                 )
@@ -209,13 +216,13 @@ fun HomeScreen(controller: NavHostController) {
                     //controller.navigate(ROUTE_CITY_BIKES)
                 },
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(Color.Transparent)
+                colors = ButtonDefaults.buttonColors(Color(0xFFFF9800))
             )
             {
                 Text(
                     text = "View Bikes",
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFFFF9800),
+                    color = Color(0xFFFFFFFF),
                 )
 
             }
@@ -254,13 +261,13 @@ fun HomeScreen(controller: NavHostController) {
                     //controller.navigate(ROUTE_KID_BIKES)
                 },
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(Color.Transparent)
+                colors = ButtonDefaults.buttonColors(Color(0xFFFF9800))
             )
             {
                 Text(
                     text = "View Bikes",
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFFFF9800),
+                    color = Color(0xFFFFFFFF),
                 )
 
             }
@@ -280,13 +287,13 @@ fun HomeScreen(controller: NavHostController) {
 }
 
 @Composable
-private fun NavigationItem(text: String, route: String, controller: NavHostController) {
+fun NavigationItem(text: String, route: String, controller: NavHostController) {
     Text(
         text = text,
-        color = Color(0xFFFFFFFF),
+        color = Color(0xFFFF9800),
         fontWeight = FontWeight.Bold,
         modifier = Modifier
-            .padding(10.dp)
+            .padding(8.dp)
             .clickable {
                 controller.navigate(route)
             }

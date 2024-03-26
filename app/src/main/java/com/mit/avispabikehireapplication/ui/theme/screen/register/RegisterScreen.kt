@@ -62,23 +62,10 @@ fun RegisterScreen(controller:NavHostController) {
     var confpass by remember { mutableStateOf(TextFieldValue("")) }
     val context= LocalContext.current
 
-
-    Box (modifier = Modifier.fillMaxSize().background(Color.White))
-
-    {
-        Image(
-            painter = painterResource(id = R.drawable.gb),
-            contentDescription = null,
-            contentScale = ContentScale.FillBounds,
-            modifier= Modifier.matchParentSize()
-        )
-    }
-
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                //.background(Color.White)
+                .background(Color.White)
                 .verticalScroll(
                     rememberScrollState()
                 ),
@@ -88,15 +75,15 @@ fun RegisterScreen(controller:NavHostController) {
         {
             Text(
                 text = "REGISTER",
-                color = Color(0xFFFFFFFF),
+                color = Color(0xFFFF9800),
                 fontFamily = FontFamily.Monospace,
                 fontSize = 40.sp
             )
 
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(15.dp))
 
             Image(
-                painter = painterResource(id = R.drawable.prof),
+                painter = painterResource(id = R.drawable.or_1),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -104,7 +91,7 @@ fun RegisterScreen(controller:NavHostController) {
                     .clip(CircleShape)
                     .border(
                         width = 3.dp,
-                        color = Color.White,
+                        color = Color(0xFFFF9800),
                         shape = CircleShape
                     )
             )
@@ -113,7 +100,7 @@ fun RegisterScreen(controller:NavHostController) {
 
             OutlinedTextField(
                 value = email,
-                label = { Text(text = "Enter Email Address", color = Color.White) },
+                label = { Text(text = "Enter Email Address", color = Color(0xFFFF9800)) },
                 keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -122,10 +109,10 @@ fun RegisterScreen(controller:NavHostController) {
                     email = it
                 },
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    textColor = Color.White, // Set text color to black
-                    focusedBorderColor = Color.White, // Change border color when focused
+                    textColor = Color.Black, // Set text color to black
+                    focusedBorderColor = Color.Black, // Change border color when focused
                     unfocusedBorderColor = Color.Gray, // Change border color when not focused
-                    cursorColor = Color.White // Set cursor color to black
+                    cursorColor = Color(0xFFFF9800) // Set cursor color to black
                 ),
                 leadingIcon = {
                     Icon(
@@ -142,7 +129,7 @@ fun RegisterScreen(controller:NavHostController) {
 
             OutlinedTextField(
                 value = pass,
-                label = { Text(text = "Enter Password", color = Color.White) },
+                label = { Text(text = "Enter Password", color = Color(0xFFFF9800)) },
                 keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -152,10 +139,10 @@ fun RegisterScreen(controller:NavHostController) {
                 },
 
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    textColor = Color.White, // Set text color to black
-                    focusedBorderColor = Color.White, // Change border color when focused
+                    textColor = Color.Black, // Set text color to black
+                    focusedBorderColor = Color.Black, // Change border color when focused
                     unfocusedBorderColor = Color.Gray, // Change border color when not focused
-                    cursorColor = Color.White // Set cursor color to black
+                    cursorColor = Color(0xFFFF9800) // Set cursor color to black
                 ),
                 leadingIcon = {
                     Icon(
@@ -171,7 +158,7 @@ fun RegisterScreen(controller:NavHostController) {
 
             OutlinedTextField(
                 value = confpass,
-                label = { Text(text = "Confirm Password ", color = Color.White) },
+                label = { Text(text = "Confirm Password ", color = Color(0xFFFF9800)) },
                 keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -181,10 +168,10 @@ fun RegisterScreen(controller:NavHostController) {
                 },
 
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    textColor = Color.White, // Set text color to black
-                    focusedBorderColor = Color.White, // Change border color when focused
+                    textColor = Color.Black, // Set text color to black
+                    focusedBorderColor = Color.Black, // Change border color when focused
                     unfocusedBorderColor = Color.Gray, // Change border color when not focused
-                    cursorColor = Color.White // Set cursor color to black
+                    cursorColor = Color(0xFFFF9800) // Set cursor color to black
                 ),
                 leadingIcon = {
                     Icon(
@@ -206,7 +193,7 @@ fun RegisterScreen(controller:NavHostController) {
                     myregister.signup(email.text.trim(), pass.text.trim(), confpass.text.trim())
 
                 },
-                colors = ButtonDefaults.buttonColors(Color.Black),
+                colors = ButtonDefaults.buttonColors(Color(0xFFFF9800)),
             )
             {
                 Text(
@@ -229,7 +216,7 @@ fun RegisterScreen(controller:NavHostController) {
             {
                 Text(
                     text = "Already have an account? Click to LogIn",
-                    color = Color(0xFFFFFFFF),
+                    color = Color(0xFFFF9800),
                     fontSize = 17.sp
                 )
 

@@ -20,6 +20,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -82,7 +83,7 @@ fun LoginScreen(controller:NavHostController) {
             Spacer(modifier = Modifier.height(79.dp))
 
             Image(
-                painter = painterResource(id = R.drawable.prof),
+                painter = painterResource(id = R.drawable.or_1),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
@@ -90,7 +91,7 @@ fun LoginScreen(controller:NavHostController) {
                     .clip(CircleShape)
                     .border(
                         width = 5.dp,
-                        color = Color.White,
+                        color = Color(0xFFFF9800),
                         shape = CircleShape
                     )
             )
@@ -99,7 +100,7 @@ fun LoginScreen(controller:NavHostController) {
 
             OutlinedTextField(
                 value = email,
-                label = { Text(text = "Enter Email Address", color = Color.Black) },
+                label = { Text(text = "Enter Email Address", color = Color(0xFFFF9800)) },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions.Default.copy(
                     keyboardType = KeyboardType.Email,
@@ -114,15 +115,15 @@ fun LoginScreen(controller:NavHostController) {
                 },
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     textColor = Color.Black, // Set text color to black
-                    focusedBorderColor = Color.Yellow, // Change border color when focused
+                    focusedBorderColor = Color.Black, // Change border color when focused
                     unfocusedBorderColor = Color.Gray, // Change border color when not focused
-                    cursorColor = Color.Black // Set cursor color to black
+                    cursorColor = Color(0xFFFF9800) // Set cursor color to black
                 ),
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Email,
                         contentDescription = null,
-                        //tint = MaterialTheme.colorScheme.primary
+                        tint = MaterialTheme.colorScheme.background
                     )
                 }
             )
@@ -132,7 +133,7 @@ fun LoginScreen(controller:NavHostController) {
 
             OutlinedTextField(
                 value = pass,
-                label = { Text(text = "Enter Password", color = Color.Black) },
+                label = { Text(text = "Enter Password", color = Color(0xFFFF9800)) },
                 keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -142,15 +143,15 @@ fun LoginScreen(controller:NavHostController) {
                 },
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     textColor = Color.Black, // Set text color to black
-                    focusedBorderColor = Color.Blue, // Change border color when focused
+                    focusedBorderColor = Color.Black, // Change border color when focused
                     unfocusedBorderColor = Color.Gray, // Change border color when not focused
-                    cursorColor = Color.Black // Set cursor color to black
+                    cursorColor = Color(0xFFFF9800) // Set cursor color to black
                 ),
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Email,
                         contentDescription = null,
-                        //tint = MaterialTheme.colorScheme.primary
+                        tint = MaterialTheme.colorScheme.background
                     )
                 }
             )
@@ -163,7 +164,7 @@ fun LoginScreen(controller:NavHostController) {
                     mylogin.login(email.text.trim(), pass.text.trim())
                     //controller.navigate(ROUTE_HOME)
                 },
-                colors = ButtonDefaults.buttonColors(Color.Black),
+                colors = ButtonDefaults.buttonColors(Color(0xFFFF9800)),
             )
             {
                 Text(text = "LogIn", color = Color.White)
@@ -183,7 +184,7 @@ fun LoginScreen(controller:NavHostController) {
                 Text(
                     text = "Don't have an account? Click to register",
 //            color = Color.Black,
-                    color = Color(0xFF7D5260),
+                    color = Color(0xFFFF9800),
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp
                 )
