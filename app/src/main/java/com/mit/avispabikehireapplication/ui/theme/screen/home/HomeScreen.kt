@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -34,7 +35,9 @@ import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -69,7 +72,7 @@ fun HomeScreen(controller: NavHostController) {
     ) {
 
         Surface(
-            color= Color.Transparent,
+            color= Color.White,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 8.dp)
@@ -122,7 +125,7 @@ fun HomeScreen(controller: NavHostController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            color = Color(0xFFFF9800),
+            color = Color(0xFF7700FF),
             textAlign = TextAlign.Center,
             fontFamily = FontFamily.Serif,
             fontWeight = FontWeight.ExtraBold,
@@ -131,8 +134,23 @@ fun HomeScreen(controller: NavHostController) {
             lineHeight = 50.sp
         )
 
+        Image(
+            painter = painterResource(id = R.drawable.m4),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+                //.clip(CircleShape)
+                .border(
+                    width = 5.dp,
+                    color = Color(0xFF7700FF),
+                )
+        )
 
-        HorizontalImageScroll(listOf(R.drawable.city2,R.drawable.m4,R.drawable.kid))
+
+        //HorizontalImageScroll(listOf(R.drawable.city2,R.drawable.m4,R.drawable.kid))
+
 
 
 
@@ -143,23 +161,24 @@ fun HomeScreen(controller: NavHostController) {
                 .fillMaxWidth()
                 .padding(8.dp)
                 .background(Color.White) // Background color of the card
-                .clickable { controller.navigate(ROUTE_MOUNTAIN_BIKES)}
+                .clickable { controller.navigate(ROUTE_MOUNTAIN_BIKES) }
         ) {
 
             Text(
                 text = "MOUNTAIN BIKES ",
                 modifier = Modifier.padding(16.dp),
-                color = Color(0xFFFF9800),
+                color = Color(0xFF7700FF),
                 fontFamily = FontFamily.Serif,
                 fontWeight = FontWeight.Bold,
-                fontSize = 20.sp
+                fontSize = 20.sp,
+
             )
 
             Text(
                 text = "Embark on an adrenaline-fueled adventure with our premium mountain bikes for hire. Conquer rugged trails and embrace the thrill of nature as you navigate" +
                         " through challenging terrains.",
                 modifier = Modifier.padding(8.dp),
-                color = Color(0xFFFFFEFE),
+                color = Color(0xFF000000),
                 fontFamily = FontFamily.Serif,
                 fontSize = 15.sp
             )
@@ -168,13 +187,13 @@ fun HomeScreen(controller: NavHostController) {
                 onClick = {
                     //controller.navigate(ROUTE_MOUNTAIN_BIKES)
                 },
-                modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(Color(0xFFFF9800))
+                modifier = Modifier.fillMaxSize(),
+                colors = ButtonDefaults.buttonColors(Color.Transparent)
             )
             {
                 Text(
-                    text = "View Bikes",
-                    color = Color(0xFFFFFFFF),
+                    text = "Read More ...",
+                    color = Color(0xFF7700FF),
                     fontWeight = FontWeight.Bold
 
                 )
@@ -195,7 +214,7 @@ fun HomeScreen(controller: NavHostController) {
             Text(
                 text = "CITY BIKES ",
                 modifier = Modifier.padding(16.dp),
-                color = Color(0xFFFF9800),
+                color = Color(0xFF7700FF),
                 fontFamily = FontFamily.Serif,
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp
@@ -206,7 +225,7 @@ fun HomeScreen(controller: NavHostController) {
                 text = "Experience the heartbeat of the city on our modern city bikes, available for rent. Designed for urban explorers, our city bikes offer a smooth and stylish " +
                         "ride through bustling streets and scenic pathways",
                 modifier = Modifier.padding(8.dp),
-                color = Color(0xFFFFFCFC),
+                color = Color(0xFF000000),
                 fontFamily = FontFamily.Serif,
                 fontSize = 15.sp
             )
@@ -216,13 +235,13 @@ fun HomeScreen(controller: NavHostController) {
                     //controller.navigate(ROUTE_CITY_BIKES)
                 },
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(Color(0xFFFF9800))
+                colors = ButtonDefaults.buttonColors(Color.Transparent)
             )
             {
                 Text(
-                    text = "View Bikes",
+                    text = "Read More ...",
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFFFFFFFF),
+                    color = Color(0xFF7700FF),
                 )
 
             }
@@ -241,7 +260,7 @@ fun HomeScreen(controller: NavHostController) {
             Text(
                 text = "KIDS BIKES ",
                 modifier = Modifier.padding(16.dp),
-                color = Color(0xFFFF9800),
+                color = Color(0xFF7700FF),
                 fontFamily = FontFamily.Serif,
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp
@@ -251,7 +270,7 @@ fun HomeScreen(controller: NavHostController) {
                 text = "Introduce your little ones to the joy of cycling with our specially designed kid bikes for hire. Engineered with safety and fun in mind, our kid bikes" +
                         " allow young riders to embark on exciting adventures. Watch their confidence grow as they pedal through parks, neighborhoods, and beyond",
                 modifier = Modifier.padding(8.dp),
-                color = Color(0xFFFFFFFF),
+                color = Color(0xFF000000),
                 fontFamily = FontFamily.Serif,
                 fontSize = 15.sp
             )
@@ -261,24 +280,25 @@ fun HomeScreen(controller: NavHostController) {
                     //controller.navigate(ROUTE_KID_BIKES)
                 },
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(Color(0xFFFF9800))
+                colors = ButtonDefaults.buttonColors(Color.Transparent)
             )
             {
                 Text(
-                    text = "View Bikes",
+                    text = "Read More ...",
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFFFFFFFF),
+                    color = Color(0xFF7700FF),
                 )
 
             }
         }
 
         Text(
-            text = "Ride with Avispa: Where Wheels Meet Wonders",
-            color = Color(0xFF000000),
+            text = "RIDE WITH AVISPA: WHERE WHEELS MEET WONDERS",
+            color = Color(0xFF7700FF),
             modifier = Modifier.padding(16.dp),
             textAlign = TextAlign.Center,
             fontFamily = FontFamily.SansSerif,
+            fontWeight = FontWeight.Bold,
             fontSize = 15.sp
         )
 
@@ -290,7 +310,7 @@ fun HomeScreen(controller: NavHostController) {
 fun NavigationItem(text: String, route: String, controller: NavHostController) {
     Text(
         text = text,
-        color = Color(0xFFFF9800),
+        color = Color(0xFF7700FF),
         fontWeight = FontWeight.Bold,
         modifier = Modifier
             .padding(8.dp)
@@ -305,19 +325,25 @@ fun NavigationItem(text: String, route: String, controller: NavHostController) {
 fun HorizontalImageScroll(imageList: List<Int>) {
     LazyRow(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(8.dp)
+            .fillMaxWidth()
+            .padding(4.dp)
     ) {
-
         items(imageList) { imageResId ->
+
             Image(
                 painter = painterResource(id = imageResId),
                 contentDescription = null,
                 modifier = Modifier
-                    .width(300.dp)
-                    .height(200.dp)
+                    .fillMaxSize()
+                    .height(300.dp)
                     .padding(8.dp)
+                    .border(
+                        width = 5.dp,
+                        color = Color(0xFF7700FF),
+                    )
             )
+
+
         }
     }
 }

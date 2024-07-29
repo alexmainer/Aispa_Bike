@@ -28,7 +28,7 @@ import com.mit.avispabikehireapplication.ui.theme.screen.register.RegisterScreen
 @Composable
 fun AppNavHost(
     controller: NavHostController = rememberNavController(),
-    startDestination: String = ROUTE_BOOKING
+    startDestination: String = ROUTE_HOME
 ){
 
     NavHost(navController = controller,modifier=Modifier, startDestination=startDestination ){
