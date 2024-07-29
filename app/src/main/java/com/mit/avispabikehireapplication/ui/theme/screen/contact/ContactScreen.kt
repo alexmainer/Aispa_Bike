@@ -38,6 +38,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -118,7 +119,7 @@ fun ContactScreen(controller: NavHostController) {
 
         Text(
             text = "CONTACT US",
-            color = Color(0xFFFF9800),
+            color = Color(0xFF7700FF),
             fontFamily = FontFamily.SansSerif,
             fontSize = 40.sp,
             fontWeight = FontWeight.ExtraBold
@@ -127,15 +128,16 @@ fun ContactScreen(controller: NavHostController) {
         Spacer(modifier = Modifier.height(10.dp))
 
         Image(
-            painter = painterResource(id = R.drawable.la),
+            painter = painterResource(id = R.drawable.front),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(200.dp)
                 .clip(CircleShape)
+                .background(Color(0xFF000000))
                 .border(
                     width = 5.dp,
-                    color = Color.Black,
+                    color = Color(0xFF7700FF),
                     shape = CircleShape
                 )
         )
@@ -148,48 +150,69 @@ fun ContactScreen(controller: NavHostController) {
             fontFamily = FontFamily.SansSerif,
             fontSize = 15.sp
         )
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
-        Text(
-            text = "Contact Information",
-            color = Color(0xFF070707),
-            fontWeight = FontWeight.ExtraBold,
-            fontFamily = FontFamily.SansSerif,
-            fontSize = 15.sp
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-
-        Text(
-            text = "Physical Address:\n" +
-                    " Tchalla Street, Suite 101, Kalakuta, \n" +
-                    "\n" +
-                    "Phone Number:\n" +
-                    "+254-715-789-670\n" +
-                    "\n" +
-                    "Email Address:\n" +
-                    "info@avispabikehire.com",
-            color = Color(0xFF070707),
-            fontWeight = FontWeight.ExtraBold,
-            fontFamily = FontFamily.SansSerif,
-            fontSize = 15.sp
-        )
-
-            Spacer(modifier = Modifier.height(10.dp))
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+                .background(Color.White) // Background color of the card
+                //.clickable { controller.navigate(ROUTE_KID_BIKES) }
+        ) {
 
             Text(
-                text = "Social Media",
+                text = "Contact Information",
+                modifier = Modifier.padding(16.dp),
+                color = Color(0xFF7700FF),
+                fontWeight = FontWeight.ExtraBold,
+                fontFamily = FontFamily.SansSerif,
+                fontSize = 20.sp
+            )
+
+            //Spacer(modifier = Modifier.height(10.dp))
+
+            Text(
+                text = "Physical Address:\n" +
+                        " Tchalla Street, Suite 101, Kalakuta, \n" +
+                        "\n" +
+                        "Phone Number:\n" +
+                        "+254-715-789-670\n" +
+                        "\n" +
+                        "Email Address:\n" +
+                        "info@avispabikehire.com",
+                modifier = Modifier.padding(16.dp),
                 color = Color(0xFF070707),
                 fontWeight = FontWeight.ExtraBold,
                 fontFamily = FontFamily.SansSerif,
                 fontSize = 15.sp
             )
+        }
 
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(20.dp))
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+                .background(Color.White) // Background color of the card
+        ) {
+
+            Text(
+                text = "Social Media",
+                modifier = Modifier.padding(16.dp),
+                color = Color(0xFF7700FF),
+                fontWeight = FontWeight.ExtraBold,
+                fontFamily = FontFamily.SansSerif,
+                fontSize = 20.sp
+            )
+
+            //Spacer(modifier = Modifier.height(10.dp))
 
             Text(
                 text = "Stay connected with us on social media:",
+                modifier = Modifier.padding(16.dp),
                 color = Color(0xFF070707),
-                modifier = Modifier.padding(11.dp),
+                fontWeight = FontWeight.ExtraBold,
                 fontFamily = FontFamily.SansSerif,
                 fontSize = 15.sp
             )
@@ -220,15 +243,51 @@ fun ContactScreen(controller: NavHostController) {
                     modifier = Modifier.size(50.dp)
                 )
             }
+        }
 
             Spacer(modifier = Modifier.height(10.dp))
 
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+                .background(Color.White) // Background color of the card
+
+        ) {
+
+            Text(
+                text = "Operating Hours",
+                modifier = Modifier.padding(16.dp),
+                fontWeight = FontWeight.ExtraBold,
+                color = Color(0xFF7700FF),
+                fontFamily = FontFamily.SansSerif,
+                fontSize = 20.sp
+            )
+
+
+            Text(
+                text = "Monday to Friday:\n" +
+                        "9:00 AM - 6:00 PM\n" +
+                        "\n" +
+                        "Saturday and Sunday:\n" +
+                        "10:00 AM - 4:00 PM",
+                modifier = Modifier.padding(16.dp),
+                color = Color(0xFF070707),
+                fontFamily = FontFamily.SansSerif,
+                fontWeight = FontWeight.ExtraBold,
+                fontSize = 15.sp
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+        }
+
             Text(
                 text = "Map and Directions",
-                color = Color(0xFF070707),
+                modifier = Modifier.padding(16.dp),
+                color = Color(0xFF7700FF),
                 fontWeight = FontWeight.ExtraBold,
                 fontFamily = FontFamily.SansSerif,
-                fontSize = 15.sp
+                fontSize = 20.sp
             )
 
             Spacer(modifier = Modifier.height(10.dp))
@@ -246,32 +305,17 @@ fun ContactScreen(controller: NavHostController) {
                         shape = CircleShape
                     )
             )
+        Spacer(modifier = Modifier.height(20.dp))
 
-
-
-            Text(
-                text = "Operating Hours",
-                fontWeight = FontWeight.ExtraBold,
-                color = Color(0xFF070707),
-                fontFamily = FontFamily.SansSerif,
-                fontSize = 15.sp
-            )
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            Text(
-                text = "Monday to Friday:\n" +
-                        "9:00 AM - 6:00 PM\n" +
-                        "\n" +
-                        "Saturday and Sunday:\n" +
-                        "10:00 AM - 4:00 PM",
-                color = Color(0xFF070707),
-                fontFamily = FontFamily.SansSerif,
-                fontSize = 15.sp
-            )
-
-            Spacer(modifier = Modifier.height(10.dp))
-
+        Text(
+            text = "RIDE WITH AVISPA: WHERE WHEELS MEET WONDERS",
+            color = Color(0xFF7700FF),
+            modifier = Modifier.padding(16.dp),
+            textAlign = TextAlign.Center,
+            fontFamily = FontFamily.SansSerif,
+            fontWeight = FontWeight.Bold,
+            fontSize = 15.sp
+        )
 
 
     }

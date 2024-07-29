@@ -30,6 +30,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -49,6 +50,7 @@ fun AboutScreen(controller: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .padding(16.dp)
             .background(Color.White)
             .verticalScroll(rememberScrollState()
         ),
@@ -107,7 +109,7 @@ fun AboutScreen(controller: NavHostController) {
 
         Text(
             text = "ABOUT US",
-            color = Color(0xFFFF9800),
+            color = Color(0xFF7700FF),
             fontFamily = FontFamily.SansSerif,
             fontSize = 40.sp,
             fontWeight = FontWeight.ExtraBold
@@ -116,15 +118,16 @@ fun AboutScreen(controller: NavHostController) {
         Spacer(modifier = Modifier.height(10.dp))
 
         Image(
-            painter = painterResource(id = R.drawable.la),
+            painter = painterResource(id = R.drawable.front),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(200.dp)
                 .clip(CircleShape)
+                .background(Color(0xFF000000))
                 .border(
                     width = 5.dp,
-                    color = Color.Black,
+                    color = Color(0xFF7700FF),
                     shape = CircleShape
                 )
         )
@@ -140,26 +143,69 @@ fun AboutScreen(controller: NavHostController) {
         )
         Spacer(modifier = Modifier.height(30.dp))
 
+        Text(
+            text = "Functions" ,
+            color = Color(0xFF7700FF),
+            fontFamily = FontFamily.SansSerif,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
+        )
+
+        Spacer(modifier = Modifier.height(20.dp))
 
         Text(
-            text = "Functions\n \n" +
-                    " 1. Quality Bike Rentals\n \n" +
-                    "At Avispa Bike Hire Company, we offer a wide range of meticulously maintained bicycles suitable for different preferences and riding styles." +
-                    " Whether you're into leisurely rides, mountain biking adventures, or road cycling escapades, we have the perfect bike for you.\n" +
-                    "\n" +
-                    " 2. Guided Tours and Routes\n\n" +
-                    "Discover the hidden gems of [Location] with our curated guided tours and recommended cycling routes. Our experienced team can provide insights, " +
-                    "safety tips, and local knowledge to make your cycling journey memorable and enjoyable.",
-            color = Color(0xFF070707),
+            text = " 1. Quality Bike Rentals " ,
+            color = Color(0xFF000000),
+            fontFamily = FontFamily.SansSerif,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
+        )
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        Text(
+            text =
+                    "At Avispa Bike Hire Company, we offer a wide range of greatly maintained bicycles suitable for different preferences and riding styles." +
+                    " Whether you're into leisurely rides, mountain adventures, or road cycling escapades, we have the perfect bike for you.\n"
+                    ,
+            color = Color(0xFF000000),
             fontFamily = FontFamily.SansSerif,
             fontSize = 15.sp
+        )
+        Text(
+            text = " 2. Guided Tours and Routes" ,
+            color = Color(0xFF000000),
+            fontFamily = FontFamily.SansSerif,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
+        )
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        Text(
+            text = " Discover the hidden gems of Wakanda with our curated guided tours and recommended cycling routes. Our experienced team can provide insights," +
+                    "safety tips, and local knowledge to make your cycling journey memorable and enjoyable.\" " ,
+            color = Color(0xFF000000),
+            fontFamily = FontFamily.SansSerif,
+            fontSize = 15.sp,
+
         )
         Spacer(modifier = Modifier.height(30.dp))
 
         Text(
-            text = "Mission\n" +
-                    "Our mission at Avispa Bike Hire Company is to empower individuals to embrace an active lifestyle by providing access to high-quality bicycles and exceptional" +
-                    " cycling experiences. We believe in fostering a sense of adventure, promoting sustainable travel, and encouraging a strong connection with the environment " +
+            text = "Mission" ,
+            color = Color(0xFF7700FF),
+            fontFamily = FontFamily.SansSerif,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+
+
+        Text(
+            text =
+                    "Our mission at Avispa Bike Hire Company is to empower people to embrace an active lifestyle by providing access to high-quality bicycles and exceptional" +
+                    "cycling experiences. We believe in fostering a sense of adventure, promoting sustainable travel, and encouraging a strong connection with the environment " +
                     "through cycling.",
             color = Color(0xFF070707),
             fontFamily = FontFamily.SansSerif,
@@ -169,8 +215,18 @@ fun AboutScreen(controller: NavHostController) {
         Spacer(modifier = Modifier.height(30.dp))
 
         Text(
-            text = "Location\n" +
-                    "Avispa Bike Hire Company is nestled in the heart of [Wakanda], a region renowned for its stunning natural beauty and diverse cycling trails. " +
+            text = "Location" ,
+            color = Color(0xFF7700FF),
+            fontFamily = FontFamily.SansSerif,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+
+
+        Text(
+            text =
+                    "Avispa Bike Hire Company is nestled in the heart of Wakanda, a region renowned for its stunning natural beauty and diverse cycling trails. " +
                     "Our strategic location allows easy access scenic routes, varying in difficulty and terrain, ensuring there's a perfect ride for everyone," +
                     " from beginners to avid cyclists.",
             color = Color(0xFF070707),
@@ -181,9 +237,12 @@ fun AboutScreen(controller: NavHostController) {
 
 
         Text(
-            text = "Ride with Avispa: Where Wheels Meet Wonders",
-            color = Color(0xFFCDDC39),
+            text = "RIDE WITH AVISPA: WHERE WHEELS MEET WONDERS",
+            color = Color(0xFF7700FF),
+            modifier = Modifier.padding(16.dp),
+            textAlign = TextAlign.Center,
             fontFamily = FontFamily.SansSerif,
+            fontWeight = FontWeight.Bold,
             fontSize = 15.sp
         )
 

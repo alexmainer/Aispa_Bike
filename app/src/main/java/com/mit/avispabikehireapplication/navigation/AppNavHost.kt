@@ -15,7 +15,7 @@ import com.mit.avispabikehireapplication.ui.theme.screen.booking.BookingScreen
 import com.mit.avispabikehireapplication.ui.theme.screen.checkout.CheckOutScreen
 import com.mit.avispabikehireapplication.ui.theme.screen.citybikes.CityBikesScreen
 import com.mit.avispabikehireapplication.ui.theme.screen.contact.ContactScreen
-import com.mit.avispabikehireapplication.ui.theme.screen.details.DetailsScreen
+import com.mit.avispabikehireapplication.ui.theme.screen.receipt.DetailsScreen
 import com.mit.avispabikehireapplication.ui.theme.screen.home.HomeScreen
 import com.mit.avispabikehireapplication.ui.theme.screen.index.IndexScreen
 import com.mit.avispabikehireapplication.ui.theme.screen.kidbikes.KidBikesScreen
@@ -28,7 +28,7 @@ import com.mit.avispabikehireapplication.ui.theme.screen.register.RegisterScreen
 @Composable
 fun AppNavHost(
     controller: NavHostController = rememberNavController(),
-    startDestination: String = ROUTE_BOOKING
+    startDestination: String = ROUTE_HOME
 ){
 
     NavHost(navController = controller,modifier=Modifier, startDestination=startDestination ){

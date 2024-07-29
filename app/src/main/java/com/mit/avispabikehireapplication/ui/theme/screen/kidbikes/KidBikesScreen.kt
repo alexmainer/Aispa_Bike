@@ -2,6 +2,7 @@ package com.mit.avispabikehireapplication.ui.theme.screen.kidbikes
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -105,7 +107,7 @@ fun KidBikesScreen(controller: NavHostController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            color = Color(0xFFFF9800),
+            color = Color(0xFF7700FF),
             textAlign = TextAlign.Center,
             fontFamily = FontFamily.Serif,
             fontWeight = FontWeight.ExtraBold,
@@ -116,11 +118,18 @@ fun KidBikesScreen(controller: NavHostController) {
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        HorizontalImageScroll(
-            listOf(
-                R.drawable.kid1,
-                R.drawable.kid
-            )
+        Image(
+            painter = painterResource(id = R.drawable.m1),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+                //.clip(CircleShape)
+                .border(
+                    width = 5.dp,
+                    color = Color(0xFF7700FF),
+                )
         )
 
         Card(
@@ -135,7 +144,7 @@ fun KidBikesScreen(controller: NavHostController) {
             Text(
                 text = "KIDS BIKES ",
                 modifier = Modifier.padding(16.dp),
-                color = Color(0xFFFF9800),
+                color = Color(0xFF7700FF),
                 fontFamily = FontFamily.Serif,
                 fontSize = 20.sp
             )
@@ -144,7 +153,7 @@ fun KidBikesScreen(controller: NavHostController) {
                 text = "Unlock the thrill of childhood exploration with our range of kid bikes for rent. Tailored to nurture young riders' confidence and coordination," +
                         " our kid-friendly bikes offer a secure and enjoyable journey",
                 modifier = Modifier.padding(16.dp),
-                color = Color(0xFFFFFFFF),
+                color = Color(0xFF000000),
                 fontFamily = FontFamily.Serif,
                 fontSize = 15.sp
             )
@@ -153,7 +162,7 @@ fun KidBikesScreen(controller: NavHostController) {
             Text(
                 text = "PRICE : KSH 150 per Hour ",
                 modifier = Modifier.padding(16.dp),
-                color = Color(0xFFFF9800),
+                color = Color(0xFF7700FF),
                 fontFamily = FontFamily.Serif,
                 fontSize = 20.sp
             )
@@ -164,7 +173,7 @@ fun KidBikesScreen(controller: NavHostController) {
                     controller.navigate(ROUTE_BOOKING)
 
                 },
-                colors = ButtonDefaults.buttonColors(Color(0xFFFF9800)),
+                colors = ButtonDefaults.buttonColors(Color(0xFF7700FF)),
                 modifier = Modifier.padding(30.dp)
             )
             {
@@ -181,26 +190,6 @@ fun KidBikesScreen(controller: NavHostController) {
 
 }
 
-@Composable
-fun HorizontalImageScroll(imageList: List<Int>) {
-    LazyRow(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-
-        items(imageList) { imageResId ->
-            Image(
-                painter = painterResource(id = imageResId),
-                contentDescription = null,
-                modifier = Modifier
-                    .width(200.dp)
-                    .height(200.dp)
-                    .padding(8.dp)
-            )
-        }
-    }
-}
 
 @Preview
 @Composable

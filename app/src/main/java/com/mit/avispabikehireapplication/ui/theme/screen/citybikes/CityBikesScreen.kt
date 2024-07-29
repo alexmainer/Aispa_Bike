@@ -2,6 +2,7 @@ package com.mit.avispabikehireapplication.ui.theme.screen.citybikes
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -46,7 +48,8 @@ import com.mit.avispabikehireapplication.ui.theme.screen.home.NavigationItem
 @Composable
 fun CityBikesScreen(controller: NavHostController) {
     Column(
-        modifier= Modifier.background(Color.White)
+        modifier= Modifier
+            .background(Color.White)
             .verticalScroll(rememberScrollState()),
     )
     {
@@ -105,7 +108,7 @@ fun CityBikesScreen(controller: NavHostController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            color = Color(0xFFFF9800),
+            color = Color(0xFF7700FF),
             textAlign = TextAlign.Center,
             fontFamily = FontFamily.Serif,
             fontWeight = FontWeight.ExtraBold,
@@ -116,12 +119,18 @@ fun CityBikesScreen(controller: NavHostController) {
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        HorizontalImageScroll(
-            listOf(
-                R.drawable.city2,
-                R.drawable.city1,
-                R.drawable.city
-            )
+        Image(
+            painter = painterResource(id = R.drawable.m1),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+                //.clip(CircleShape)
+                .border(
+                    width = 5.dp,
+                    color = Color(0xFF7700FF),
+                )
         )
 
         Card(
@@ -135,7 +144,7 @@ fun CityBikesScreen(controller: NavHostController) {
             Text(
                 text = "CITY BIKES ",
                 modifier = Modifier.padding(16.dp),
-                color = Color(0xFFFF9800),
+                color = Color(0xFF7700FF),
                 fontFamily = FontFamily.Serif,
                 fontSize = 20.sp
             )
@@ -144,7 +153,7 @@ fun CityBikesScreen(controller: NavHostController) {
                 text = "Explore the heart of the city on our sleek city bikes, designed for urban adventurers like you. Navigate bustling streets, discover hidden gems," +
                         " and enjoy the freedom of a quick, convenient, and eco-friendly ride. ",
                 modifier = Modifier.padding(16.dp),
-                color = Color(0xFFFFFFFF),
+                color = Color(0xFF000000),
                 fontFamily = FontFamily.Serif,
                 fontSize = 15.sp
             )
@@ -152,7 +161,7 @@ fun CityBikesScreen(controller: NavHostController) {
             Text(
                 text = "PRICE : KSH 200 per Hour ",
                 modifier = Modifier.padding(16.dp),
-                color = Color(0xFFFF9800),
+                color = Color(0xFF7700FF),
                 fontFamily = FontFamily.Serif,
                 fontSize = 20.sp
             )
@@ -163,14 +172,14 @@ fun CityBikesScreen(controller: NavHostController) {
                     controller.navigate(ROUTE_BOOKING)
 
                 },
-                colors = ButtonDefaults.buttonColors(Color(0xFFFF9800)),
+                colors = ButtonDefaults.buttonColors(Color(0xFF7700FF)),
                 modifier = Modifier.padding(30.dp)
 
             )
             {
                 Text(
                     text = " BOOK ",
-                    color = Color.White
+                    color = Color(0xFFFFFFFF)
                 )
 
             }
@@ -179,26 +188,7 @@ fun CityBikesScreen(controller: NavHostController) {
     }
 
 }
-@Composable
-fun HorizontalImageScroll(imageList: List<Int>) {
-    LazyRow(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
 
-        items(imageList) { imageResId ->
-            Image(
-                painter = painterResource(id = imageResId),
-                contentDescription = null,
-                modifier = Modifier
-                    .width(200.dp)
-                    .height(200.dp)
-                    .padding(8.dp)
-            )
-        }
-    }
-}
 
 @Preview
 @Composable

@@ -111,7 +111,7 @@ fun MountainBikesScreen(controller: NavHostController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            color = Color(0xFFFF9800),
+            color = Color(0xFF7700FF),
             textAlign = TextAlign.Center,
             fontFamily = FontFamily.Serif,
             fontWeight = FontWeight.ExtraBold,
@@ -122,12 +122,18 @@ fun MountainBikesScreen(controller: NavHostController) {
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        HorizontalImageScroll(
-            listOf(
-                R.drawable.m1,
-                R.drawable.m4,
-
-            )
+        Image(
+            painter = painterResource(id = R.drawable.m1),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+                //.clip(CircleShape)
+                .border(
+                    width = 5.dp,
+                    color = Color(0xFF7700FF),
+                )
         )
 
         Card(
@@ -142,7 +148,7 @@ fun MountainBikesScreen(controller: NavHostController) {
             Text(
                 text = "MOUNTAIN BIKES ",
                 modifier = Modifier.padding(16.dp),
-                color = Color(0xFFFF9800),
+                color = Color(0xFF7700FF),
                 fontFamily = FontFamily.Serif,
                 fontSize = 20.sp
             )
@@ -151,7 +157,7 @@ fun MountainBikesScreen(controller: NavHostController) {
                 text = "Embark on an adrenaline-fueled adventure with our premium mountain bikes for hire. Conquer rugged trails and embrace the thrill of nature as you navigate" +
                         " through challenging terrains.",
                 modifier = Modifier.padding(16.dp),
-                color = Color(0xFFFFFFFF),
+                color = Color(0xFF000000),
                 fontFamily = FontFamily.Serif,
                 fontSize = 15.sp
             )
@@ -159,7 +165,7 @@ fun MountainBikesScreen(controller: NavHostController) {
             Text(
                 text = "PRICE : KSH 300 per Hour ",
                 modifier = Modifier.padding(16.dp),
-                color = Color(0xFFFF9800),
+                color = Color(0xFF7700FF),
                 fontFamily = FontFamily.Serif,
                 fontSize = 20.sp
             )
@@ -171,7 +177,7 @@ fun MountainBikesScreen(controller: NavHostController) {
 
                 },
                 modifier = Modifier.padding(30.dp),
-                colors = ButtonDefaults.buttonColors(Color(0xFFFF9800)),
+                colors = ButtonDefaults.buttonColors(Color(0xFF7700FF)),
             )
             {
                 Text(
@@ -183,26 +189,6 @@ fun MountainBikesScreen(controller: NavHostController) {
             }
         }
 
-    }
-}
-@Composable
-fun HorizontalImageScroll(imageList: List<Int>) {
-    LazyRow(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-
-        items(imageList) { imageResId ->
-            Image(
-                painter = painterResource(id = imageResId),
-                contentDescription = null,
-                modifier = Modifier
-                    .width(200.dp)
-                    .height(200.dp)
-                    .padding(8.dp)
-            )
-        }
     }
 }
 

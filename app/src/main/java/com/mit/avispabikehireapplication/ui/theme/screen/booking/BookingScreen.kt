@@ -97,7 +97,7 @@ fun CustomDatePicker(
             .background(Color.Transparent),
         shape = RoundedCornerShape(4.dp),
         colors = ButtonDefaults.outlinedButtonColors(
-            contentColor = Color(0xFFFF9800),
+            contentColor = Color(0xFF7700FF),
         ),
         border = BorderStroke(0.5.dp, Color.Black),
         contentPadding = PaddingValues(8.dp)
@@ -107,7 +107,7 @@ fun CustomDatePicker(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
-                tint = MaterialTheme.colorScheme.background,
+                tint = MaterialTheme.colorScheme.primary,
                 imageVector = Icons.Default.DateRange,
                 contentDescription = null,
                 modifier = Modifier.size(24.dp)
@@ -117,7 +117,7 @@ fun CustomDatePicker(
                 modifier = Modifier
                     .padding(8.dp)
                     .weight(1f),
-                color = Color(0xFF000000),
+                color = Color(0xFF7700FF),
             )
         }
     }
@@ -138,20 +138,12 @@ fun BookingScreen(controller: NavHostController) {
     var expanded by remember { mutableStateOf(false) }
 
     val bikeTypes = listOf("Mountain Bike", "City Bikes", "Kid Bikes") // Add your specific options here
-    //var selectedBikeType by remember { mutableStateOf(bikeTypes[0]) }
     val options by remember { mutableStateOf(bikeTypes) }
     var selectedOption by remember { mutableStateOf(options[0]) }
 
     var selectedTypeIndex by remember { mutableIntStateOf(0) }
-//    var selectedType by remember { mutableStateOf(typeOptions[0]) }
     var selectedDate by remember { mutableStateOf<Date?>(null) }
-//    var pickedDate by remember { mutableStateOf(LocalDate.now())    }
-//    val formattedDate by remember { derivedStateOf { DateTimeFormatter.ofPattern("MM dd yyyy").format(pickedDate)}    }
     val dateDialogState = rememberMaterialDialogState()
-
-
-
-
 
 
     Column (
@@ -161,7 +153,7 @@ fun BookingScreen(controller: NavHostController) {
     {
         Text(
             text = "BOOKING",
-            color = Color(0xFFFF9800),
+            color = Color(0xFF7700FF),
             modifier = Modifier.padding(16.dp),
             fontFamily = FontFamily.Serif,
             fontSize = 40.sp
@@ -173,11 +165,9 @@ fun BookingScreen(controller: NavHostController) {
         var idNumber by remember { mutableStateOf("") }
         var selectedBikeType by remember { mutableStateOf("") }
         var quantity by remember { mutableStateOf("") }
-        //var selectedDate by remember { mutableStateOf<Date?>(null) }
         var date by remember { mutableStateOf("") }
 
         // prices
-        // Define the prices for each bike type
         val mountainBikePrice = 300
         val cityBikePrice = 200
         val kidBikePrice = 150
@@ -193,7 +183,7 @@ fun BookingScreen(controller: NavHostController) {
 
         OutlinedTextField(
             value = name,
-            label = { Text(text = "Name", color = Color(0xFFFF9800)) },
+            label = { Text(text = "Name", color = Color(0xFF7700FF)) },
             keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
             modifier = Modifier
                 .fillMaxWidth()
@@ -202,16 +192,16 @@ fun BookingScreen(controller: NavHostController) {
                 name = it
             },
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                textColor = Color.Black, // Set text color to black
+                textColor = Color(0xFF7700FF), // Set text color to black
                 focusedBorderColor = Color.Black, // Change border color when focused
                 unfocusedBorderColor = Color.Gray, // Change border color when not focused
-                cursorColor = Color(0xFFFF9800) // Set cursor color to black
+                cursorColor = Color(0xFF7700FF) // Set cursor color
             ),
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Person,
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.background
+                    tint = MaterialTheme.colorScheme.primary
                 )
             }
         )
@@ -220,7 +210,7 @@ fun BookingScreen(controller: NavHostController) {
 
         OutlinedTextField(
             value = idNumber,
-            label = { Text(text = "Id Number", color = Color(0xFFFF9800)) },
+            label = { Text(text = "Id Number", color = Color(0xFF7700FF)) },
             keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
             modifier = Modifier
                 .fillMaxWidth()
@@ -229,58 +219,19 @@ fun BookingScreen(controller: NavHostController) {
                 idNumber = it
             },
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                textColor = Color.Black, // Set text color to black
+                textColor = Color(0xFF7700FF), // Set text color to black
                 focusedBorderColor = Color.Black, // Change border color when focused
                 unfocusedBorderColor = Color.Gray, // Change border color when not focused
-                cursorColor = Color(0xFFFF9800) // Set cursor color to black
+                cursorColor = Color(0xFF7700FF) // Set cursor color to black
             ),
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Info,
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.background
+                    tint = MaterialTheme.colorScheme.primary
                 )
             }
         )
-
-        OutlinedTextField(
-            value = quantity,
-            label = { Text(text = "Quantity", color = Color(0xFFFF9800)) },
-            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            onValueChange = {
-                quantity = it
-            },
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                textColor = Color.Black, // Set text color to black
-                focusedBorderColor = Color.Black, // Change border color when focused
-                unfocusedBorderColor = Color.Gray, // Change border color when not focused
-                cursorColor = Color(0xFFFF9800) // Set cursor color to black
-            ),
-            leadingIcon = {
-                Icon(
-                    imageVector = Icons.Default.AddCircle,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.background
-                )
-            }
-        )
-
-
-        OutlinedDropdown(
-            value = selectedBikeType,
-            onValueChange = { selectedBikeType = it },
-            options = bikeTypes,
-            label = { Text("Bike Type",color = Color(0xFF000000)) },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-
-            )
-
-        Text("Total Price: $totalPrice", modifier = Modifier.padding(8.dp),color= Color.Black)
 
         CustomDatePicker(
             selectedDate = selectedDate,
@@ -299,6 +250,44 @@ fun BookingScreen(controller: NavHostController) {
             }
         )
 
+        OutlinedTextField(
+            value = quantity,
+            label = { Text(text = "Quantity", color = Color(0xFF7700FF)) },
+            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            onValueChange = {
+                quantity = it
+            },
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                textColor = Color(0xFF7700FF), // Set text color to black
+                focusedBorderColor = Color.Black, // Change border color when focused
+                unfocusedBorderColor = Color.Gray, // Change border color when not focused
+                cursorColor = Color(0xFF7700FF) // Set cursor color to black
+            ),
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.AddCircle,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
+            }
+        )
+
+
+        OutlinedDropdown(
+            value = selectedBikeType,
+            onValueChange = { selectedBikeType = it },
+            options = bikeTypes,
+            label = { Text("Bike Type",color = Color(0xFF7700FF)) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+
+            )
+
+        Text("Total Price: $totalPrice", modifier = Modifier.padding(8.dp),color= Color(0xFF7700FF))
 
 
         Spacer(modifier = Modifier.height(32.dp))
@@ -324,41 +313,15 @@ fun BookingScreen(controller: NavHostController) {
                             controller.navigate(ROUTE_DETAILS)
                         } else {
                             // Bike is not available for selected date
-                            // Display a message or UI indication that bikes are not available
+                            // Display a message that bikes are not available
                             Toast.makeText(context, "Bikes are not available for the selected date and type", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
-//
-//                // Create an instance of ProductViewModel
-//                val productViewModel = ProductViewModel(controller, context)
-//
-//                // Call checkAvailability function on the instance
-//                selectedDate?.let {
-//                    productViewModel.checkAvailability(selectedBikeType, it) { isAvailable ->
-//                        if (isAvailable) {
-//                            // Bike is available for selected date
-//                            // Proceed with saving the product
-//                            val productRepository = ProductViewModel(controller, context)
-//                            productRepository.saveProduct(
-//                                name.trim(),
-//                                idNumber.trim(),
-//                                selectedBikeType.trim(),
-//                                quantity.trim(),
-//                                selectedDate?.formatToDisplayDate() ?: ""
-//                            )
-//                            controller.navigate(ROUTE_DETAILS)
-//                        } else {
-//                            // Bike is not available for selected date
-//                            // Display a message or UI indication that bikes are not available
-//                            Toast.makeText(context, "Bikes are not available for the selected date and type", Toast.LENGTH_SHORT).show()
-//                        }
-//                    }
-//                }
             },
             modifier = Modifier
                 .padding(16.dp),
-            colors = ButtonDefaults.buttonColors(Color(0xFFFF9800)),
+            colors = ButtonDefaults.buttonColors(Color(0xFF7700FF)),
         )
         {
             Text(
@@ -390,7 +353,7 @@ fun OutlinedDropdown(
         BasicTextField(
             value = if (hasSelection) options[selectedIndex] else "Type of Bike",
             onValueChange = {},
-            textStyle = TextStyle(color = Color(0xFFFF9800)),
+            textStyle = TextStyle(color = Color(0xFF7700FF)),
             readOnly = true,
             decorationBox = { innerTextField ->
                 Box(
@@ -401,12 +364,7 @@ fun OutlinedDropdown(
                         .fillMaxWidth()
                         .clickable { expanded = !expanded },
                 ) {
-//                    Icon(
-//                        imageVector = Icons.Default.DateRange,
-//                        contentDescription = null,
-//                        tint = MaterialTheme.colorScheme.surfaceTint
-//
-//                    )
+
                     Spacer(modifier = Modifier.width(8.dp))
                     innerTextField()
                 }
@@ -427,7 +385,7 @@ fun OutlinedDropdown(
                         }
                         .padding(8.dp)
                 ) {
-                    Text(text = option,color= Color(0xFFFF9800))
+                    Text(text = option,color= Color(0xFF7700FF)) //color of expanded dropdown
                 }
             }
         }
