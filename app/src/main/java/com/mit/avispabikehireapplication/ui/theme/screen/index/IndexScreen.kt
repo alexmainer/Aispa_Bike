@@ -50,8 +50,8 @@ fun IndexScreen(controller: NavHostController) {
         Text(
             text = "AVISPA BIKES",
             fontWeight = FontWeight.Bold,
-            color = Color(0xFFFF9800),
-            fontFamily = FontFamily.SansSerif,
+            color = Color(0xFF7700FF),
+            fontFamily = FontFamily.Serif,
             fontSize = 40.sp
         )
         
@@ -60,15 +60,16 @@ fun IndexScreen(controller: NavHostController) {
         Spacer(modifier = Modifier.height(19.dp))
 
         Image(
-            painter = painterResource(id = R.drawable.l_a),
+            painter = painterResource(id = R.drawable.front),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .size(300.dp)
+                .size(200.dp)
                 .clip(CircleShape)
+                .background(Color(0xFF000000))
                 .border(
-                    width = 5.dp,
-                    color = Color(0xFFFF9800),
+                    width = 3.dp,
+                    color = Color(0xFF7700FF),
                     shape = CircleShape
                 )
         )
@@ -79,16 +80,18 @@ fun IndexScreen(controller: NavHostController) {
             text = "Join us at Avispa Bike Company, where passion meets precision, and every pedal stroke takes you closer to your cycling aspirations." +
                     " Embark on a transformative cycling journey with us, and let's ride towards a better, healthier, and more sustainable future.",
             color = Color(0xFF070707),
+            fontWeight = FontWeight.Bold,
             fontFamily = FontFamily.SansSerif,
             fontSize = 15.sp
         )
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(40.dp))
+
         Button(
             onClick = {
                       controller.navigate(ROUTE_REGISTER)
 
             },
-            colors = ButtonDefaults.buttonColors(Color(0xFFFF9800)),
+            colors = ButtonDefaults.buttonColors(Color(0xFF7700FF)),
         )
         {
             Text(
@@ -98,14 +101,14 @@ fun IndexScreen(controller: NavHostController) {
 
 
         }
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(50.dp))
 
         Text(
-            text = "Ride with Avispa: Where Wheels Meet Wonders",
+            text = "RIDE WITH AVISPA : WHERE WHEELS MEET WONDERS",
             fontWeight = FontWeight.Bold,
-            color = Color(0xFFFF9800),
+            color = Color(0xFF7700FF),
             fontFamily = FontFamily.SansSerif,
-            fontSize = 19.sp
+            fontSize = 17.sp
         )
 
 

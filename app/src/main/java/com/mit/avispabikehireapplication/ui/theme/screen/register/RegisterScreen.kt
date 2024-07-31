@@ -43,6 +43,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
@@ -53,6 +54,7 @@ import androidx.navigation.compose.rememberNavController
 import com.mit.avispabikehireapplication.R
 import com.mit.avispabikehireapplication.data.AuthViewModel
 import com.mit.avispabikehireapplication.navigation.ROUTE_LOGIN
+import java.nio.file.WatchEvent
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -73,34 +75,43 @@ fun RegisterScreen(controller:NavHostController) {
 
             )
         {
+            Spacer(modifier = Modifier.height(40.dp))
+
             Text(
                 text = "REGISTER",
-                color = Color(0xFFFF9800),
-                fontFamily = FontFamily.Monospace,
+                color = Color(0xFF7700FF),
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.Serif,
                 fontSize = 40.sp
             )
 
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(30.dp))
 
             Image(
-                painter = painterResource(id = R.drawable.or_1),
+                painter = painterResource(id = R.drawable.pp_pro),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(150.dp)
                     .clip(CircleShape)
+                    .background(Color(0xFF7700FF))
                     .border(
                         width = 3.dp,
-                        color = Color(0xFFFF9800),
+                        color = Color(0xFF7700FF),
                         shape = CircleShape
                     )
             )
-            Spacer(modifier = Modifier.height(57.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
 
             OutlinedTextField(
                 value = email,
-                label = { Text(text = "Enter Email Address", color = Color(0xFFFF9800)) },
+                label = {
+                    Text(
+                        text = "Enter Email Address",
+                        color = Color(0xFF7700FF),
+                        fontWeight = FontWeight.Bold,)
+                        },
                 keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -112,13 +123,13 @@ fun RegisterScreen(controller:NavHostController) {
                     textColor = Color.Black, // Set text color to black
                     focusedBorderColor = Color.Black, // Change border color when focused
                     unfocusedBorderColor = Color.Gray, // Change border color when not focused
-                    cursorColor = Color(0xFFFF9800) // Set cursor color to black
+                    cursorColor = Color(0xFF7700FF) // Set cursor color to black
                 ),
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Email,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.background
+                        tint = MaterialTheme.colorScheme.primary
                     )
                 }
             )
@@ -129,7 +140,12 @@ fun RegisterScreen(controller:NavHostController) {
 
             OutlinedTextField(
                 value = pass,
-                label = { Text(text = "Enter Password", color = Color(0xFFFF9800)) },
+                label = {
+                    Text(
+                        text = "Enter Password",
+                        color = Color(0xFF7700FF),
+                        fontWeight = FontWeight.Bold,
+                        ) },
                 keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -142,13 +158,13 @@ fun RegisterScreen(controller:NavHostController) {
                     textColor = Color.Black, // Set text color to black
                     focusedBorderColor = Color.Black, // Change border color when focused
                     unfocusedBorderColor = Color.Gray, // Change border color when not focused
-                    cursorColor = Color(0xFFFF9800) // Set cursor color to black
+                    cursorColor = Color(0xFF7700FF) // Set cursor color to black
                 ),
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Lock,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.background
+                        tint = MaterialTheme.colorScheme.primary
                     )
                 }
             )
@@ -158,7 +174,12 @@ fun RegisterScreen(controller:NavHostController) {
 
             OutlinedTextField(
                 value = confpass,
-                label = { Text(text = "Confirm Password ", color = Color(0xFFFF9800)) },
+                label = {
+                    Text(
+                        text = "Confirm Password ",
+                        color = Color(0xFF7700FF),
+                        fontWeight = FontWeight.Bold,
+                ) },
                 keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -171,13 +192,13 @@ fun RegisterScreen(controller:NavHostController) {
                     textColor = Color.Black, // Set text color to black
                     focusedBorderColor = Color.Black, // Change border color when focused
                     unfocusedBorderColor = Color.Gray, // Change border color when not focused
-                    cursorColor = Color(0xFFFF9800) // Set cursor color to black
+                    cursorColor = Color(0xFF7700FF) // Set cursor color to black
                 ),
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Lock,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.background
+                        tint = MaterialTheme.colorScheme.primary
                     )
                 }
             )
@@ -189,11 +210,10 @@ fun RegisterScreen(controller:NavHostController) {
                 onClick = {
 
                     val myregister = AuthViewModel(controller, context)
-                    // myregister.signup(email.text.trim(), pass.text.trim(), confpass.text.trim())
                     myregister.signup(email.text.trim(), pass.text.trim(), confpass.text.trim())
 
                 },
-                colors = ButtonDefaults.buttonColors(Color(0xFFFF9800)),
+                colors = ButtonDefaults.buttonColors(Color(0xFF7700FF)),
             )
             {
                 Text(
@@ -216,7 +236,7 @@ fun RegisterScreen(controller:NavHostController) {
             {
                 Text(
                     text = "Already have an account? Click to LogIn",
-                    color = Color(0xFFFF9800),
+                    color = Color(0xFF7700FF),
                     fontSize = 17.sp
                 )
 

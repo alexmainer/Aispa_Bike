@@ -75,6 +75,9 @@ class AuthViewModel(var controller:NavHostController,var context:Context) {
         }
     }
 
+
+
+
     fun logout(){
         mAuth.signOut()
         controller.navigate(ROUTE_LOGIN)
